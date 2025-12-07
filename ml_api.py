@@ -11,6 +11,9 @@ from typing import Dict
 import json
 import pandas as pd
 import logging
+import boto3
+
+from s3_functions import *
 
 # setting up a logger
 logger = logging.getLogger("ml_api_logger")
@@ -19,6 +22,7 @@ file_handler = logging.FileHandler("ml_api.log", mode="a")
 formatter = logging.Formatter("%(asctime)s - %(levelname)s - %(message)s")
 file_handler.setFormatter(formatter)
 logger.addHandler(file_handler)
+
 
 # request types
 class ModelRequest(BaseModel):
@@ -55,13 +59,22 @@ class PredictRequest(BaseModel):
     model_id: float
     X_data: str
 
+
 # basic containers
 next_model_id = 0
 models = {}
 model_hyperparameters = {}
 
+
 # API functions
 app = FastAPI()
+
+
+save_model_to_s3
+load_model_from_s3
+delete_model_from_s3
+save_dataset_to_s3
+
 
 # 1.1 create a model record with hyperparameters
 @app.post("/create_model")
@@ -78,18 +91,20 @@ async def create_model(request: ModelRequest):
         model_hyperparameters[next_model_id] = request
         
         if request.model_type == "LGBMRegressor":
-            models[next_model_id] = lgb.LGBMRegressor(**request.hyperparameters)
+            model = lgb.LGBMRegressor(**request.hyperparameters)
         elif request.model_type == "LGBMClassifier":
-            models[next_model_id] = lgb.LGBMClassifier(**request.hyperparameters)
+            model = lgb.LGBMClassifier(**request.hyperparameters)
         else:
-            error_message = "Создание модели невозможно, "
-            error_message += "так как был выбран неподдерживаемый класс модели.\n"
-            error_message += "Доступные классы можно посмотреть с помошью запроса "
-            error_message += ".../get_model_classes"
+            error_message = ("Создание модели невозможно, "
+                             "так как был выбран неподдерживаемый класс модели.\n"
+                             "Доступные классы можно посмотреть с помошью запроса "
+                             ".../get_model_classes")
 
             logger.error(f"Создание модели завершилось с ошибкой:\n {error_message}")
             raise HTTPException(status_code=500, detail=str(error_message))
         
+        save_model_to_s3(next_model_id, model)
+
         next_model_id += 1
 
         return {"model_id": next_model_id - 1,
@@ -111,10 +126,12 @@ async def train_model(request: TrainRequest):
 
     try:
         model_id = request.model_id
+        model_id = int(model_id)
+
         dataset_X = pd.read_json(request.X_data)
         dataset_Y = pd.read_json(request.Y_data)
 
-        model_instance = models[model_id]
+        model_instance = load_model_from_s3(model_id)
         model_instance.fit(dataset_X, dataset_Y)
 
         y_prediction = model_instance.predict(dataset_X)
@@ -126,6 +143,8 @@ async def train_model(request: TrainRequest):
         elif type(model_instance) == lgb.LGBMClassifier:
             metric = 'ROC AUC'
             value = roc_auc_score(dataset_Y, y_prediction)
+
+        save_model_to_s3(next_model_id, model_instance)
 
         return {"model_id": model_id, 
                 "status": "trained", 
@@ -157,14 +176,14 @@ async def train_model(request: CreateAndTrainRequest):
         }
         
         if request.model_type == "LGBMRegressor":
-            models[next_model_id] = lgb.LGBMRegressor(**request.hyperparameters)
+            model = lgb.LGBMRegressor(**request.hyperparameters)
         elif request.model_type == "LGBMClassifier":
-            models[next_model_id] = lgb.LGBMClassifier(**request.hyperparameters)
+            model = lgb.LGBMClassifier(**request.hyperparameters)
         else:
-            error_message = "Создание модели невозможно, "
-            error_message += "так как был выбран неподдерживаемый класс модели.\n"
-            error_message += "Доступные классы можно посмотреть с помошью запроса "
-            error_message += ".../get_model_classes"
+            error_message = ("Создание модели невозможно, "
+                             "так как был выбран неподдерживаемый класс модели.\n"
+                             "Доступные классы можно посмотреть с помошью запроса "
+                             ".../get_model_classes")
 
             logger.error(f"Создание модели завершилось с ошибкой:\n {error_message}")
             raise HTTPException(status_code=500, detail=str(error_message))
@@ -183,7 +202,7 @@ async def train_model(request: CreateAndTrainRequest):
         dataset_X = pd.read_json(request.X_data)
         dataset_Y = pd.read_json(request.Y_data)
 
-        model_instance = models[model_id]
+        model_instance = model
         model_instance.fit(dataset_X, dataset_Y)
 
         y_prediction = model_instance.predict(dataset_X)
@@ -195,6 +214,8 @@ async def train_model(request: CreateAndTrainRequest):
         elif type(model_instance) == lgb.LGBMClassifier:
             metric = 'ROC AUC'
             value = roc_auc_score(dataset_Y, y_prediction)
+
+        save_model_to_s3(model_id, model_instance)
 
         return {"model_id": model_id, "status": "trained", "train metric": f"{metric}: {value}",}
     
@@ -217,8 +238,10 @@ async def get_models():
     """
     Перечисление всех сохраненных моделей и гиперпараметров
     """
+
     logger.info(f"Запрос на перечисление моделей")
-    model_ids = list(models.keys())
+
+    model_ids = get_model_ids_from_s3()
     model_types = [model_hyperparameters[x] for x in model_ids]
     return {"models_ids_hyperparameters": list(zip(model_ids, model_types))}
 
@@ -233,9 +256,11 @@ async def get_model_prediction(request: PredictRequest):
 
     try:
         model_id = request.model_id
+        model_id = int(model_id)
+
         X_data = pd.read_json(request.X_data)
 
-        model_instance = models[model_id]
+        model_instance = load_model_from_s3(model_id)
         prediction = model_instance.predict(X_data)
 
         return {"model_id": request.model_id, "prediction": prediction.tolist()}
@@ -251,17 +276,21 @@ async def delete_model(model_id: int):
     Удаляет модель и её гиперпараметры по ID.
     Возвращает статус удаления.
     """
-    global models, model_hyperparameters
 
     logger.info(f"Выполняется удаление модели {model_id}")
     
-    if model_id not in models:
-        return {"status": "failed", "result": f"Модели с id {model_id} не существует"}
+    # if model_id not in models:
+    #     return {"status": "failed", "result": f"Модели с id {model_id} не существует"}
     
-    models.pop(model_id)
+    model_id = int(model_id)
+
+    success_flg = delete_model_from_s3(model_id)
     model_hyperparameters.pop(model_id)
     
-    return {"status": "success", "result": f"Model {model_id} and its hyperparameters were deleted"}
+    if success_flg:
+        return {"status": "success", "result": f"Model {model_id} and its hyperparameters were deleted"}
+    else:
+        return {"status": "failed", "result": f"Модели с id {model_id} не существует"}
 
 # 5. Check the APP status
 @app.get("/healthcheck")
