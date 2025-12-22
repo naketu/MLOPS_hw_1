@@ -152,3 +152,9 @@ curl -X POST "http://127.0.0.1:8000/trainmodel" \
 Каждый запрос логируется и при ошибке возвращается статус и подробное сообщение (код 500).
 
 ***
+
+## Запуск тестов и пуш в докерхаб
+
+```bash
+make docker-push DOCKERHUB_USER=nikitaaksenov IMAGE_NAME=mlops_hw TAG=v0.1.0
+```
