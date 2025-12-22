@@ -1,4 +1,4 @@
-# MLOPS_hw_1
+# MLOPS_hw
 First homework for MLOPS course, FTaDA, HSE Masters
 
 Задание выполнено группой из одного человека - Аксенова Никиты Николаевича
