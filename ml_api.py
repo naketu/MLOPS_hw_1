@@ -70,12 +70,6 @@ model_hyperparameters = {}
 app = FastAPI()
 
 
-save_model_to_s3
-load_model_from_s3
-delete_model_from_s3
-save_dataset_to_s3
-
-
 # 1.1 create a model record with hyperparameters
 @app.post("/create_model")
 async def create_model(request: ModelRequest):
