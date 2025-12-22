@@ -157,4 +157,8 @@ curl -X POST "http://127.0.0.1:8000/trainmodel" \
 
 ```bash
 make docker-push DOCKERHUB_USER=nikitaaksenov IMAGE_NAME=mlops_hw TAG=v0.1.0
+
+make test
+
+make lint
 ```
