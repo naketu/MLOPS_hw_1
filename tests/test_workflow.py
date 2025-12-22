@@ -1,4 +1,3 @@
-import json
 import pandas as pd
 import pytest
 from fastapi.testclient import TestClient
@@ -8,7 +7,7 @@ import ml_api
 
 @pytest.fixture()
 def client_with_inmemory_s3(monkeypatch):
-    
+
     ml_api.next_model_id = 0
     ml_api.models = {}
     ml_api.model_hyperparameters = {}

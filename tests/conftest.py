@@ -1,7 +1,6 @@
 from __future__ import annotations
 
 import io
-import types
 import pytest
 
 import sys

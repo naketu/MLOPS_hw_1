@@ -8,10 +8,8 @@ from sklearn.metrics import mean_absolute_percentage_error, roc_auc_score
 # other dependancies
 from pydantic import BaseModel
 from typing import Dict
-import json
 import pandas as pd
 import logging
-import boto3
 
 from s3_functions import *
 
