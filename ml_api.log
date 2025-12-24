@@ -1,0 +1,50 @@
+2025-12-07 05:59:47,871 - INFO - Запрос на перечисление классов модели
+2025-12-07 05:59:52,102 - INFO - Создание и обучение модели ID 0
+2025-12-07 05:59:52,102 - INFO - Создание модели типа LGBMClassifier с параметрами: {'boosting_type': 'gbdt', 'num_leaves': 31, 'max_depth': -1, 'learning_rate': 0.1, 'n_estimators': 100, 'subsample_for_bin': 200000, 'objective': 'binary', 'min_split_gain': 0.0, 'min_child_weight': 0.001, 'min_child_samples': 20, 'subsample': 1.0, 'colsample_bytree': 1.0, 'reg_alpha': 0.0, 'reg_lambda': 0.0, 'random_state': None, 'verbose': -1}
+2025-12-07 05:59:52,102 - INFO - Обучение модели 0
+2025-12-07 05:59:52,732 - INFO - Выполняется инференс модели
+2025-12-07 05:59:52,853 - ERROR - Инференс модели модели завершился с ошибкой: 'coroutine' object has no attribute 'predict'
+2025-12-07 06:01:49,362 - INFO - Создание и обучение модели ID 0
+2025-12-07 06:01:49,363 - INFO - Создание модели типа LGBMClassifier с параметрами: {'boosting_type': 'gbdt', 'num_leaves': 31, 'max_depth': -1, 'learning_rate': 0.1, 'n_estimators': 100, 'subsample_for_bin': 200000, 'objective': 'binary', 'min_split_gain': 0.0, 'min_child_weight': 0.001, 'min_child_samples': 20, 'subsample': 1.0, 'colsample_bytree': 1.0, 'reg_alpha': 0.0, 'reg_lambda': 0.0, 'random_state': None, 'verbose': -1}
+2025-12-07 06:01:49,363 - INFO - Обучение модели 0
+2025-12-07 06:01:50,040 - INFO - Выполняется инференс модели
+2025-12-07 06:01:50,165 - ERROR - Инференс модели модели завершился с ошибкой: 'bool' object has no attribute 'predict'
+2025-12-07 06:04:34,454 - INFO - Создание и обучение модели ID 0
+2025-12-07 06:04:34,455 - INFO - Создание модели типа LGBMClassifier с параметрами: {'boosting_type': 'gbdt', 'num_leaves': 31, 'max_depth': -1, 'learning_rate': 0.1, 'n_estimators': 100, 'subsample_for_bin': 200000, 'objective': 'binary', 'min_split_gain': 0.0, 'min_child_weight': 0.001, 'min_child_samples': 20, 'subsample': 1.0, 'colsample_bytree': 1.0, 'reg_alpha': 0.0, 'reg_lambda': 0.0, 'random_state': None, 'verbose': -1}
+2025-12-07 06:04:34,455 - INFO - Обучение модели 0
+2025-12-07 06:04:35,104 - INFO - Выполняется инференс модели
+2025-12-07 06:04:35,233 - ERROR - Инференс модели модели завершился с ошибкой: 'bool' object has no attribute 'predict'
+2025-12-07 06:04:44,360 - INFO - Healthcheck запрошен. Всего моделей: 0
+2025-12-07 06:06:41,878 - INFO - Запрос на перечисление классов модели
+2025-12-07 06:06:44,012 - INFO - Создание и обучение модели ID 0
+2025-12-07 06:06:44,012 - INFO - Создание модели типа LGBMClassifier с параметрами: {'boosting_type': 'gbdt', 'num_leaves': 31, 'max_depth': -1, 'learning_rate': 0.1, 'n_estimators': 100, 'subsample_for_bin': 200000, 'objective': 'binary', 'min_split_gain': 0.0, 'min_child_weight': 0.001, 'min_child_samples': 20, 'subsample': 1.0, 'colsample_bytree': 1.0, 'reg_alpha': 0.0, 'reg_lambda': 0.0, 'random_state': None, 'verbose': -1}
+2025-12-07 06:06:44,012 - INFO - Обучение модели 0
+2025-12-07 06:06:44,656 - INFO - Выполняется инференс модели
+2025-12-07 06:06:44,815 - INFO - Обучение модели 0.0
+2025-12-07 06:06:44,826 - ERROR - Обучение модели 0.0 завершилось с ошибкой: 'bool' object has no attribute 'fit'
+2025-12-07 06:06:44,827 - INFO - Выполняется удаление модели 0
+2025-12-07 06:06:44,829 - INFO - Healthcheck запрошен. Всего моделей: 0
+2025-12-07 06:08:44,723 - INFO - Запрос на перечисление классов модели
+2025-12-07 06:08:46,638 - INFO - Создание и обучение модели ID 0
+2025-12-07 06:08:46,638 - INFO - Создание модели типа LGBMClassifier с параметрами: {'boosting_type': 'gbdt', 'num_leaves': 31, 'max_depth': -1, 'learning_rate': 0.1, 'n_estimators': 100, 'subsample_for_bin': 200000, 'objective': 'binary', 'min_split_gain': 0.0, 'min_child_weight': 0.001, 'min_child_samples': 20, 'subsample': 1.0, 'colsample_bytree': 1.0, 'reg_alpha': 0.0, 'reg_lambda': 0.0, 'random_state': None, 'verbose': -1}
+2025-12-07 06:08:46,638 - INFO - Обучение модели 0
+2025-12-07 06:08:47,311 - INFO - Выполняется инференс модели
+2025-12-07 06:08:47,500 - INFO - Обучение модели 0.0
+2025-12-07 06:08:47,511 - ERROR - Обучение модели 0.0 завершилось с ошибкой: 'bool' object has no attribute 'fit'
+2025-12-07 06:08:47,513 - INFO - Выполняется удаление модели 0
+2025-12-07 06:08:47,520 - INFO - Healthcheck запрошен. Всего моделей: 0
+2025-12-22 07:09:57,439 - INFO - Запрос на перечисление классов модели
+2025-12-22 07:27:09,946 - INFO - Запрос на перечисление классов модели
+2025-12-22 07:27:09,947 - INFO - Создание модели типа LGBMRegressor с параметрами: {'n_estimators': 5}
+2025-12-22 07:29:47,313 - INFO - Запрос на перечисление классов модели
+2025-12-22 07:29:47,316 - INFO - Создание модели типа LGBMRegressor с параметрами: {'n_estimators': 5}
+2025-12-22 07:29:47,319 - INFO - Создание и обучение модели ID 0
+2025-12-22 07:29:47,319 - INFO - Создание модели типа LGBMClassifier с параметрами: {'n_estimators': 10, 'learning_rate': 0.2, 'min_child_samples': 1, 'num_leaves': 7, 'verbosity': -1}
+2025-12-22 07:29:47,319 - INFO - Обучение модели 0
+2025-12-22 07:29:47,355 - INFO - Создание и обучение модели ID 0
+2025-12-22 07:29:47,355 - INFO - Создание модели типа LGBMClassifier с параметрами: {'n_estimators': 10, 'verbosity': -1}
+2025-12-22 07:29:47,355 - INFO - Обучение модели 0
+2025-12-22 07:29:47,360 - INFO - Выполняется инференс модели
+2025-12-22 07:29:47,362 - INFO - Обучение модели 0.0
+2025-12-22 07:29:47,367 - INFO - Выполняется удаление модели 0
+2025-12-22 07:29:47,367 - INFO - Healthcheck запрошен. Всего моделей: 0

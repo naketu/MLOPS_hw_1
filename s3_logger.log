@@ -1,0 +1,32 @@
+2025-12-07 05:09:44,748 - WARNING - S3/Minio connection failed: name 'ClientError' is not defined. Operating in memory-only mode.
+2025-12-07 05:12:05,110 - WARNING - S3/Minio connection failed: Connection was closed before we received a valid response from endpoint URL: "http://127.0.0.1:9000/ml-models".. Operating in memory-only mode.
+2025-12-07 05:15:50,179 - WARNING - S3/Minio connection failed: Connection was closed before we received a valid response from endpoint URL: "http://127.0.0.1:9000/ml-models".. Operating in memory-only mode.
+2025-12-07 05:16:57,757 - INFO - Bucket 'ml-models' created or already exists
+2025-12-07 05:16:57,757 - INFO - Connected to S3/Minio at http://localhost:9000
+2025-12-07 05:18:40,655 - INFO - Connected to S3/Minio at http://localhost:9000
+2025-12-07 05:18:41,517 - INFO - Model 10 successfully saved to S3 at models/model_10.pkl
+2025-12-07 05:59:08,704 - INFO - Connected to S3/Minio at http://localhost:9000
+2025-12-07 05:59:17,981 - INFO - Connected to S3/Minio at http://localhost:9000
+2025-12-07 06:01:39,803 - INFO - Connected to S3/Minio at http://localhost:9000
+2025-12-07 06:01:49,022 - INFO - Connected to S3/Minio at http://localhost:9000
+2025-12-07 06:01:49,939 - INFO - Model 0 successfully saved to S3 at models/model_0.pkl
+2025-12-07 06:01:50,165 - WARNING - Model 0.0 not found in S3
+2025-12-07 06:04:20,745 - INFO - Connected to S3/Minio at http://localhost:9000
+2025-12-07 06:04:30,014 - INFO - Connected to S3/Minio at http://localhost:9000
+2025-12-07 06:04:35,011 - INFO - Model 0 successfully saved to S3 at models/model_0.pkl
+2025-12-07 06:04:35,233 - WARNING - Model 0.0 not found in S3
+2025-12-07 06:06:31,402 - INFO - Connected to S3/Minio at http://localhost:9000
+2025-12-07 06:06:40,523 - INFO - Connected to S3/Minio at http://localhost:9000
+2025-12-07 06:06:44,554 - INFO - Model 0 successfully saved to S3 at models/model_0.pkl
+2025-12-07 06:06:44,801 - INFO - Model 0 successfully loaded from S3
+2025-12-07 06:06:44,825 - WARNING - Model 0.0 not found in S3
+2025-12-07 06:08:34,212 - INFO - Connected to S3/Minio at http://localhost:9000
+2025-12-07 06:08:43,304 - INFO - Connected to S3/Minio at http://localhost:9000
+2025-12-07 06:08:47,205 - INFO - Model 0 successfully saved to S3 at models/model_0.pkl
+2025-12-07 06:08:47,486 - INFO - Model 0 successfully loaded from S3
+2025-12-07 06:08:47,511 - WARNING - Model 0.0 not found in S3
+2025-12-07 06:08:47,519 - INFO - Model 0 successfully deleted from S3
+2025-12-07 06:10:08,836 - INFO - Connected to S3/Minio at http://localhost:9000
+2025-12-07 06:13:00,121 - INFO - Connected to S3/Minio at http://localhost:9000
+2025-12-22 07:27:09,897 - WARNING - S3/Minio connection failed: Connection was closed before we received a valid response from endpoint URL: "http://localhost:9000/ml-models".. Operating in memory-only mode.
+2025-12-22 07:29:47,262 - WARNING - S3/Minio connection failed: Connection was closed before we received a valid response from endpoint URL: "http://localhost:9000/ml-models".. Operating in memory-only mode.
